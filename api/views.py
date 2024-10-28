@@ -450,6 +450,16 @@ class CartUpdateView(APIView):
         except Cart.DoesNotExist:
             return Response({"error": "Cart item not found"}, status=status.HTTP_404_NOT_FOUND)
 
+
+class ClearCartView(APIView):
+    permission_classes = [IsAuthenticated]
+
+
+    def post(self, request):
+        user = request.user
+        # Clear the user's cart
+        Cart.objects.filter(user=user).delete()
+        return Response({"message": "Cart cleared successfully"}, status=status.HTTP_200_OK)
     
 #-----------------##---------------###-----------------####--------------#####--------------######-------------#######----------------########
 

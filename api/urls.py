@@ -2,7 +2,7 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import CustomerSignupView, RestaurantSignupView,LoginView,CountryListView,CustomerProfileView,RestaurantListView, RestaurantDetailView, AddToCartView, CartUpdateView, FinalizeOrderView,AddFavoriteView,RemoveFavoriteView,FavoriteListView,RemoveFromCartView,CartView, RestaurantProfileView, AddDishView, EditDishView, AddressListView, AddressDetailView, OrdersListView, RestaurantOrdersView,UpdateOrderStatusView
+from .views import CustomerSignupView, RestaurantSignupView,LoginView,CountryListView,CustomerProfileView,RestaurantListView, RestaurantDetailView, AddToCartView, CartUpdateView, FinalizeOrderView,AddFavoriteView,RemoveFavoriteView,FavoriteListView,RemoveFromCartView,CartView, RestaurantProfileView, AddDishView, EditDishView, AddressListView, AddressDetailView, OrdersListView, RestaurantOrdersView,UpdateOrderStatusView, ClearCartView
   # Import your view classes
 
 urlpatterns = [
@@ -20,6 +20,7 @@ urlpatterns = [
     path('cart/finalize/', FinalizeOrderView.as_view(), name='finalize-order'),
     path('cart/remove/<int:item_id>/', RemoveFromCartView.as_view(), name='remove-from-cart'),
     path('cart/update/<int:item_id>/', CartUpdateView.as_view(), name='update-cart'),
+    path('cart/clear/', ClearCartView.as_view(), name='clear-cart'),
 
     
     path('favorites/add/', AddFavoriteView.as_view(), name='add-favorite'),

@@ -94,57 +94,7 @@ class CartSerializer(serializers.ModelSerializer):
         fields = ['id', 'dish_name','price', 'quantity', 'restaurant_name']
 
 
-# class OrderSerializer(serializers.ModelSerializer):
-#     ordered_items = serializers.SerializerMethodField()  # Serializes the ordered items (Cart items)
-#     restaurant_name = serializers.SerializerMethodField()
-#     delivery_address = serializers.CharField(source='delivery_address.address')
-#     total_price = serializers.DecimalField(max_digits=10, decimal_places=2, coerce_to_string=False)
-#     order_status = serializers.CharField()  # Include order status in the serialized data
 
-#     class Meta:
-#         model = Order
-#         fields = ['id', 'created_at', 'total_price', 'restaurant_name', 'delivery_address', 'ordered_items', 'order_status']
-
-#     def get_restaurant_name(self, obj):
-#         if obj.items.exists():
-#             return obj.items.first().dish.restaurant.name  # Assuming all items in the order are from the same restaurant
-#         return ""
-
-#     def get_ordered_items(self, obj):
-#         items = [{
-#             'dish_name': item.dish.name,
-#             'quantity': item.quantity,
-#             'price': item.dish.price,
-#         } for item in obj.items.all()]
-#         return items
-
-# class OrderSerializer(serializers.ModelSerializer):
-#     ordered_items = serializers.SerializerMethodField()  # Serializes the ordered items (Cart items)
-#     restaurant_name = serializers.SerializerMethodField()
-#     delivery_address = serializers.CharField(source='delivery_address.address')
-#     total_price = serializers.DecimalField(max_digits=10, decimal_places=2)
-#     order_status = serializers.CharField()  # Include order status in the serialized data
-
-#     class Meta:
-#         model = Order
-#         fields = ['id', 'created_at', 'total_price', 'restaurant_name', 'delivery_address', 'ordered_items', 'order_status']
-
-#     def get_restaurant_name(self, obj):
-#         # Get unique restaurant names from the order items
-#         if obj.items.exists():
-#             # Fetch the restaurant name from the first cart item's dish's restaurant
-#             first_item = obj.items.first()
-#             return first_item.dish.restaurant.name if first_item else "Unknown Restaurant"
-#         return "Unknown Restaurant"
-
-#     def get_ordered_items(self, obj):
-#         # Get the ordered items (Cart items) from the Order
-#         items = [{
-#             'dish_name': item.dish.name,
-#             'quantity': item.quantity,
-#             'price': item.dish.price,
-#         } for item in obj.items.all()]
-#         return items
 class OrderSerializer(serializers.ModelSerializer):
     ordered_items = serializers.SerializerMethodField()  # Serializes the ordered items (Cart items)
     restaurant_name = serializers.CharField(source='restaurant.name', read_only=True)
