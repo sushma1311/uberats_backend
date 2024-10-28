@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3@w+62^#i(abgboav!*h_(nfd2t)96e@o4e)mcvd7!ob=_fb=u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['backend.herokuapp.com']
+ALLOWED_HOSTS = ['ubereats-backend-4199107521a9.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
